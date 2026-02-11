@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Catequese001 CIC Março 2025",
+    "description": "Registros do evento",
+    "folder": "Catequese001_CIC-Março-2025",
+    "cover": "Encontro_2-1.webp",
+    "photos": [
+      "Encontro_2-1.webp",
+      "Encontro_2-2.webp",
+      "Encontro_2-3.webp",
+      "Encontro_2-4.webp",
+      "Encontro_2-5.webp",
+      "Encontro_2-6.webp",
+      "Encontro_2-7.webp",
+      "Encontro_2-8.webp",
+      "Encontro_2-9.webp",
+      "Encontro_2-10.webp",
+      "Encontro_2-11.webp",
+      "Encontro_2-12.webp",
+      "Encontro_2-13.webp",
+      "Encontro_2-14.webp",
+      "Encontro_2-15.webp",
+      "Encontro_2-16.webp",
+      "Encontro_2-17.webp",
+      "Encontro_2-18.webp",
+      "Encontro_2-19.webp",
+      "Encontro_2-20.webp",
+      "Encontro_2-21.webp"
+    ]
+  }
+,
+  {
+    "name": "Encontros",
+    "description": "Registros do evento",
+    "folder": "Encontros",
+    "cover": "1-eliomarvaldenia.png",
+    "photos": [
+      "1-eliomarvaldenia.png",
+      "2-cassianoerirone.png",
+      "3-padrefeliciano.png",
+      "5-flavio.png",
+      "6-marcospaulo.png",
+      "7-leonardoecarleusa.png",
+      "8-padreferdiram.png",
+      "9-claudio.png",
+      "11-danielemaria.png",
+      "12-analenyemarcos.png",
+      "13-luiza.png",
+      "14-gloria.png",
+      "15-jonaseedilane.png",
+      "16-thiagoeedinalda.png",
+      "17-marcospaulo.png",
+      "18-cassianoerirone.png",
+      "19-peismael.png",
+      "20-marcosmateus.png",
+      "21-peclaudio.png",
+      "22-peflavio.png"
+    ]
+  }
+,
+  {
+    "name": "coordenadores",
+    "description": "Registros do evento",
+    "folder": "coordenadores",
+    "cover": "cassiano.webp",
+    "photos": [
+      "cassiano.webp",
+      "cicera.webp",
+      "claudio.webp",
+      "gloria.webp",
+      "jonas.webp",
+      "leonardo.webp",
+      "marcos_paulo.webp",
+      "paulo_roberto.webp",
+      "rirone.webp"
+    ]
+  }
+]

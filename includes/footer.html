@@ -1,0 +1,89 @@
+<footer class="bg-slate-900 text-slate-100">
+
+  <div class="mx-auto max-w-6xl px-6 py-10 grid gap-8 md:grid-cols-3">
+
+    <!-- Coluna 1 -->
+    <div>
+      <h4 class="font-semibold text-lg">
+        Grupo de Estudos Católicos Padre Pio
+      </h4>
+      <p class="mt-3 text-sm text-slate-300">
+        Grupo de estudo da doutrina católica ligado à Paróquia São Francisco de Assis,
+        em Picos (PI), dedicado à oração, estudo bíblico e convivência fraterna.
+      </p>
+    </div>
+
+    <!-- Coluna 2 -->
+    <div>
+      <p class="text-sm uppercase tracking-[0.3em] text-slate-400">
+        Contato
+      </p>
+      <p class="mt-3 text-sm text-slate-300">Paróquia São Francisco de Assis</p>
+      <p class="text-sm text-slate-300">Bairro Junco · Picos · Piauí</p>
+      <p class="text-sm text-slate-300">grupopadrepio1@gmail.com</p>
+    </div>
+
+    <!-- Coluna 3 – Player -->
+    <div>
+      <p class="text-sm uppercase tracking-[0.3em] text-slate-400">
+        Sons de Paz
+      </p>
+
+      <div class="mt-4 px-4 py-3 rounded-md bg-slate-800 space-y-3">
+
+        <!-- Info -->
+        <div class="overflow-hidden">
+          <p class="text-[10px] uppercase tracking-wide text-slate-400">
+            Agora tocando
+          </p>
+          <p id="track-title" class="text-sm font-medium truncate">—</p>
+          <p id="track-artist" class="text-xs text-slate-400 truncate">—</p>
+        </div>
+
+        <!-- Barra de progresso minimalista -->
+        <input
+          id="progress-bar"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          class="w-full h-1 accent-slate-400 cursor-pointer rounded-full transition-colors duration-200 hover:accent-slate-300">
+
+        <!-- Controles e volume -->
+        <div class="flex items-center justify-between gap-3 text-slate-300">
+
+          <div class="flex items-center gap-2 md:gap-3">
+            <button id="shuffle-btn" title="Aleatório" class="hover:text-slate-100 transition-colors">🔀</button>
+            <button id="prev-btn" title="Anterior" class="hover:text-slate-100 transition-colors">◀◀</button>
+            <button id="play-btn" class="text-2xl md:text-3xl hover:text-slate-100 transition-colors" title="Play / Pause">▶︎</button>
+            <button id="next-btn" title="Próxima" class="hover:text-slate-100 transition-colors">▶▶</button>
+          </div>
+
+          <!-- Volume -->
+          <input
+            id="volume-control"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.8"
+            class="w-24 md:w-32 h-1 accent-slate-400 cursor-pointer rounded-full transition-colors duration-200 hover:accent-slate-300">
+        </div>
+
+        <!-- Áudio -->
+        <audio id="audio-player" preload="metadata"></audio>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="border-t border-slate-800 text-center text-xs text-slate-500 py-4">
+    © <span id="year"></span> Grupo de Estudos Católicos Padre Pio
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</footer>

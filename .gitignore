@@ -1,0 +1,24 @@
+# Mac System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project Development Tools & Scripts
+# (These are not needed for the live production site)
+tools/
+atualizarplaylist.sh
+gerar-albums.sh
+
+# Logs
+*.log
