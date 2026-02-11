@@ -5,11 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://grupopadrepiopicos.com.br/" />
+  <meta property="og:title" content="Grupo de Estudos Católicos São Padre Pio" />
+  <meta property="og:description" content="Venha caminhar conosco nesta estrada de santidade! Encontros em Picos-PI." />
+  
+  <meta property="og:image" content="https://grupopadrepiopicos.com.br/whats1.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_BR" />
+
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
 
   <title>Grupo de Estudos Católicos São Padre Pio</title>
 
-  <!-- aplicar preferência de tema antes do render (evitar flash) -->
   <script>
     (function () {
       try {
@@ -20,50 +30,42 @@
     })();
   </script>
 
-  <!-- Tailwind via CDN (corrigido) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Estilos -->
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/galeria.css">
 </head>
 
 <body class="min-h-screen">
 
-  <!-- Header -->
   <div id="header-container"></div>
 
   <main class="pt-28 pb-24">
 
-    <!-- Início -->
     <section class="page-section active" data-page="inicio" aria-label="Página inicial">
       <div class="w-full">
         <div id="inicio-content"></div>
       </div>
     </section>
 
-    <!-- Agenda 2026 -->
     <section class="page-section" data-page="agenda26" aria-label="Agenda 2026">
       <div class="mx-auto max-w-6xl px-6 space-y-10">
         <div id="agenda26-content"></div>
       </div>
     </section>
 
-    <!-- Catequese -->
     <section class="page-section" data-page="catequese" aria-label="Catequese Permanente">
       <div class="mx-auto max-w-6xl px-6 space-y-10">
         <div id="catequese-content"></div>
       </div>
     </section>
 
-    <!-- Galeria -->
     <section class="page-section" data-page="galeria" aria-label="Galeria de Fotos">
       <div class="mx-auto max-w-6xl px-6 space-y-8">
         <div id="galeria-content"></div>
       </div>
     </section>
 
-    <!-- Sobre -->
     <section class="page-section" data-page="sobre" aria-label="Sobre o grupo">
       <div class="mx-auto max-w-6xl px-6 space-y-10">
         <div id="sobre-content"></div>
@@ -72,13 +74,10 @@
 
   </main>
 
-  <!-- Footer (contém o PLAYER) -->
   <div id="footer-container"></div>
 
-  <!-- Lightbox -->
   <div id="lightbox-container"></div>
 
-  <!-- Scripts -->
   <script src="assets/js/gallery.js"></script>
   <script src="assets/js/theme-toggle.js"></script>
 
@@ -228,5 +227,4 @@
   </script>
 
 </body>
-
 </html>
