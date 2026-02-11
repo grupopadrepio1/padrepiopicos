@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,12 +11,12 @@
 
   <!-- aplicar preferência de tema antes do render (evitar flash) -->
   <script>
-    (function(){
-      try{
+    (function () {
+      try {
         const s = localStorage.getItem('theme');
-        if(s === 'dark') document.documentElement.setAttribute('data-theme','dark');
-        else if(!s && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme','dark');
-      }catch(e){}
+        if (s === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        else if (!s && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) { }
     })();
   </script>
 
@@ -36,8 +37,15 @@
 
     <!-- Início -->
     <section class="page-section active" data-page="inicio" aria-label="Página inicial">
-      <div class="mx-auto max-w-6xl px-6 space-y-12">
+      <div class="w-full">
         <div id="inicio-content"></div>
+      </div>
+    </section>
+
+    <!-- Agenda 2026 -->
+    <section class="page-section" data-page="agenda26" aria-label="Agenda 2026">
+      <div class="mx-auto max-w-6xl px-6 space-y-10">
+        <div id="agenda26-content"></div>
       </div>
     </section>
 
@@ -129,11 +137,35 @@
       const slides = document.querySelectorAll('.hero-slide');
       if (slides.length > 0) {
         let currentSlide = 0;
-        setInterval(() => {
+        const overlay1 = document.getElementById('hero-overlay-1');
+        const overlay2 = document.getElementById('hero-overlay-2');
+
+        const updateOverlays = (index) => {
+          if (index === 0) {
+            overlay1?.classList.add('opacity-0');
+            overlay2?.classList.add('opacity-0');
+          } else {
+            overlay1?.classList.remove('opacity-0');
+            overlay2?.classList.remove('opacity-0');
+          }
+        };
+
+        // Estado inicial
+        updateOverlays(currentSlide);
+
+        const nextSlide = () => {
           slides[currentSlide].classList.remove('active');
           currentSlide = (currentSlide + 1) % slides.length;
           slides[currentSlide].classList.add('active');
-        }, 5000);
+          updateOverlays(currentSlide);
+
+          // Tempo: 10s se estiver no slide 0 (foto1), senão 5s
+          const duration = currentSlide === 0 ? 10000 : 5000;
+          setTimeout(nextSlide, duration);
+        };
+
+        // Iniciar loop com duração inicial de 10s (já que começa no slide 0)
+        setTimeout(nextSlide, 10000);
       }
     }
 
@@ -146,56 +178,55 @@
         fetch('includes/footer.html').then(r => r.text()),
         fetch('includes/lightbox.html').then(r => r.text()),
         fetch('pages/inicio.html').then(r => r.text()),
+        fetch('pages/agenda26.html').then(r => r.text()),
         fetch('pages/catequese.html').then(r => r.text()),
         fetch('pages/galeria.html').then(r => r.text()),
         fetch('pages/sobre.html').then(r => r.text())
       ])
-      .then(([
-        headerData,
-        footerData,
-        lightboxData,
-        inicioData,
-        catequeseData,
-        galeriaData,
-        sobreData
-      ]) => {
+        .then(([
+          headerData,
+          footerData,
+          lightboxData,
+          inicioData,
+          agenda26Data,
+          catequeseData,
+          galeriaData,
+          sobreData
+        ]) => {
 
-        document.getElementById('header-container').innerHTML = headerData;
-        document.getElementById('footer-container').innerHTML = footerData;
-        document.getElementById('lightbox-container').innerHTML = lightboxData;
+          document.getElementById('header-container').innerHTML = headerData;
+          document.getElementById('footer-container').innerHTML = footerData;
+          document.getElementById('lightbox-container').innerHTML = lightboxData;
 
-        document.getElementById('inicio-content').innerHTML = inicioData;
-        document.getElementById('catequese-content').innerHTML = catequeseData;
-        document.getElementById('galeria-content').innerHTML = galeriaData;
-        document.getElementById('sobre-content').innerHTML = sobreData;
+          document.getElementById('inicio-content').innerHTML = inicioData;
+          document.getElementById('agenda26-content').innerHTML = agenda26Data;
+          document.getElementById('catequese-content').innerHTML = catequeseData;
+          document.getElementById('galeria-content').innerHTML = galeriaData;
+          document.getElementById('sobre-content').innerHTML = sobreData;
 
-        initializeApp();
-        initGallery();
+          initializeApp();
+          initGallery();
 
-        /* Ajustes pós-injeção: aplicar loading=lazy em imagens injetadas */
-        document.querySelectorAll('#inicio-content img, #catequese-content img, #galeria-content img, #sobre-content img')
-          .forEach(img => { if (!img.loading) img.loading = 'lazy'; });
+          /* Ajustes pós-injeção: aplicar loading=lazy em imagens injetadas */
+          document.querySelectorAll('#inicio-content img, #catequese-content img, #galeria-content img, #sobre-content img')
+            .forEach(img => { if (!img.loading) img.loading = 'lazy'; });
 
-        /* 🔊 PLAYER (depois do footer existir) */
-        const script = document.createElement("script");
-        script.src = "assets/js/music-player.js";
-        document.body.appendChild(script);
-        
-  /* Script da Catequese (modal de encontros) */
-  const cateScript = document.createElement('script');
-  cateScript.src = 'assets/js/catequese.js';
-  document.body.appendChild(cateScript);
-      })
-      .catch(err =>
-        console.error('Erro ao carregar componentes:', err)
-      );
+          /* 🔊 PLAYER (depois do footer existir) */
+          const script = document.createElement("script");
+          script.src = "assets/js/music-player.js";
+          document.body.appendChild(script);
+
+          /* Script da Catequese (modal de encontros) */
+          const cateScript = document.createElement('script');
+          cateScript.src = 'assets/js/catequese.js';
+          document.body.appendChild(cateScript);
+        })
+        .catch(err =>
+          console.error('Erro ao carregar componentes:', err)
+        );
     });
   </script>
 
 </body>
+
 </html>
-
-
-
-
-
