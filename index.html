@@ -9,7 +9,7 @@
   <meta property="og:url" content="https://grupopadrepiopicos.com.br/" />
   <meta property="og:title" content="Grupo Padre Pio" />
   <meta property="og:description" content="Picos - Piauí" />
-  
+
   <meta property="og:image" content="https://grupopadrepiopicos.com.br/whats5.png" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
@@ -54,11 +54,11 @@
       </div>
     </section>
 
-    <section class="page-section" data-page="catequese" aria-label="Catequese Permanente">
+    <!-- <section class="page-section" data-page="catequese" aria-label="Catequese Permanente">
       <div class="mx-auto max-w-6xl px-6 space-y-10">
         <div id="catequese-content"></div>
       </div>
-    </section>
+    </section> -->
 
     <section class="page-section" data-page="galeria" aria-label="Galeria de Fotos">
       <div class="mx-auto max-w-6xl px-6 space-y-8">
@@ -139,24 +139,11 @@
         const overlay1 = document.getElementById('hero-overlay-1');
         const overlay2 = document.getElementById('hero-overlay-2');
 
-        const updateOverlays = (index) => {
-          if (index === 0) {
-            overlay1?.classList.add('opacity-0');
-            overlay2?.classList.add('opacity-0');
-          } else {
-            overlay1?.classList.remove('opacity-0');
-            overlay2?.classList.remove('opacity-0');
-          }
-        };
-
-        // Estado inicial
-        updateOverlays(currentSlide);
-
         const nextSlide = () => {
           slides[currentSlide].classList.remove('active');
           currentSlide = (currentSlide + 1) % slides.length;
           slides[currentSlide].classList.add('active');
-          updateOverlays(currentSlide);
+          // updateOverlays(currentSlide); // Removido
 
           // Tempo: 10s se estiver no slide 0 (foto1), senão 5s
           const duration = currentSlide === 0 ? 10000 : 5000;
@@ -178,7 +165,7 @@
         fetch('includes/lightbox.html').then(r => r.text()),
         fetch('pages/inicio.html').then(r => r.text()),
         fetch('pages/agenda26.html').then(r => r.text()),
-        fetch('pages/catequese.html').then(r => r.text()),
+        // fetch('pages/catequese.html').then(r => r.text()),
         fetch('pages/galeria.html').then(r => r.text()),
         fetch('pages/sobre.html').then(r => r.text())
       ])
@@ -188,7 +175,7 @@
           lightboxData,
           inicioData,
           agenda26Data,
-          catequeseData,
+          // catequeseData,
           galeriaData,
           sobreData
         ]) => {
@@ -199,7 +186,7 @@
 
           document.getElementById('inicio-content').innerHTML = inicioData;
           document.getElementById('agenda26-content').innerHTML = agenda26Data;
-          document.getElementById('catequese-content').innerHTML = catequeseData;
+          // document.getElementById('catequese-content').innerHTML = catequeseData;
           document.getElementById('galeria-content').innerHTML = galeriaData;
           document.getElementById('sobre-content').innerHTML = sobreData;
 
@@ -216,9 +203,9 @@
           document.body.appendChild(script);
 
           /* Script da Catequese (modal de encontros) */
-          const cateScript = document.createElement('script');
-          cateScript.src = 'assets/js/catequese.js';
-          document.body.appendChild(cateScript);
+          // const cateScript = document.createElement('script');
+          // cateScript.src = 'assets/js/catequese.js';
+          // document.body.appendChild(cateScript);
         })
         .catch(err =>
           console.error('Erro ao carregar componentes:', err)
@@ -227,4 +214,5 @@
   </script>
 
 </body>
+
 </html>
