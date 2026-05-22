@@ -1,9 +1,9 @@
-<img src="assets/img/foto1.webp" alt="Imagem Agenda" class="w-full h-auto rounded-2xl shadow-md mb-8 mx-auto">
+<img src="assets/img/carrossel/foto1.png" alt="Imagem Agenda" class="w-full h-auto rounded-2xl shadow-md mt-6 md:mt-8 mb-8 mx-auto">
 
 <div class="text-center space-y-3">
   <p class="uppercase text-xs tracking-[0.4em] text-slate-500">Agenda 2026</p>
   <h2 class="text-3xl font-semibold text-slate-900">Catequese Grupo Padre Pio</h2>
-  <div class="flex flex-wrapjustify-center gap-4 text-sm text-slate-600 mt-2">
+  <div class="flex flex-wrap justify-center gap-4 text-sm text-slate-600 mt-2">
     <span class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-100">
       📍 Salão Paroquial (Igreja São Francisco de Assis)
     </span>
@@ -53,16 +53,19 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
       <!-- Card Template for each Saint -->
-      <div
-        class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
+      <a
+        href="pages/santos/santa_teresinha.html"
+        class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4 group focus:outline-none focus:ring-4 focus:ring-emerald-100"
+        aria-label="Abrir página de Santa Teresinha">
         <div
-          class="bg-emerald-100 text-emerald-600 w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shrink-0">
+          class="bg-emerald-100 text-emerald-600 w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
           1</div>
         <div>
-          <h4 class="font-bold text-slate-900">Santa Teresinha</h4>
+          <h4 class="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">Santa Teresinha</h4>
           <p class="text-sm text-slate-600">A doutrina do amor e da pequena via.</p>
+          <span class="mt-2 inline-flex text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">Ler biografia</span>
         </div>
-      </div>
+      </a>
 
       <div
         class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
