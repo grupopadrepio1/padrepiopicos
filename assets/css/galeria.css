@@ -12,17 +12,17 @@
 
 .album-card {
   display: block;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   overflow: hidden;
   transition: transform 0.28s ease, box-shadow 0.28s ease;
   cursor: pointer;
   background: white;
 }
-.album-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 40px rgba(2,6,23,0.08); }
+.album-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
 
 /* melhor separação visual e foco */
 .album-card { border: 1px solid rgba(2,6,23,0.03); }
-.album-card:focus { box-shadow: 0 8px 30px rgba(16,185,129,0.08); transform: translateY(-4px); }
+.album-card:focus { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
 
 /* Cover wrapper using aspect-ratio for consistent presentation */
 .album-card .cover {
@@ -75,7 +75,7 @@
   animation: imageZoom 0.32s ease-in-out;
   max-width: 100%;
   max-height: 70vh;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-card);
   outline: none;
 }
 
@@ -111,7 +111,7 @@
   background: rgba(255,255,255,0.04);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 0.35rem 0.6rem;
   font-size: 1.05rem;
   line-height: 1;
@@ -125,7 +125,7 @@
   padding: 0.35rem 0.6rem;
   background: rgba(0,0,0,0.35);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
 }
 
 /* Em telas pequenas, o header costuma ocupar mais espaço — reduzir o padding direito
@@ -139,4 +139,3 @@
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
-

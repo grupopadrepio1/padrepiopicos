@@ -1,0 +1,7 @@
+/* Tailwind compilado para produção. As fontes da SPA são declaradas explicitamente. */
+@import "tailwindcss" source(none);
+
+@source "../../index.html";
+@source "../../includes";
+@source "../../pages";
+@source "../js";

@@ -22,3 +22,6 @@ gerar-albums.sh
 
 # Logs
 *.log
+
+# Dependências instaladas apenas para gerar os arquivos de produção
+node_modules/
