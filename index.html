@@ -82,6 +82,10 @@
       </div>
     </section>
 
+    <section class="page-section" data-page="webradio" aria-label="Web Rádio">
+      <div id="webradio-content"></div>
+    </section>
+
     <section class="page-section" data-page="sobre" aria-label="Sobre o grupo">
       <div class="mx-auto max-w-6xl px-6 space-y-10">
         <div id="sobre-content"></div>
@@ -183,6 +187,7 @@
         fetch('pages/agenda26.html').then(r => r.text()),
         // fetch('pages/catequese.html').then(r => r.text()),
         fetch('pages/galeria.html').then(r => r.text()),
+        fetch('pages/webradio.html').then(r => r.text()),
         fetch('pages/sobre.html').then(r => r.text())
       ])
         .then(([
@@ -193,6 +198,7 @@
           agenda26Data,
           // catequeseData,
           galeriaData,
+          webradioData,
           sobreData
         ]) => {
 
@@ -204,13 +210,14 @@
           document.getElementById('agenda26-content').innerHTML = agenda26Data;
           // document.getElementById('catequese-content').innerHTML = catequeseData;
           document.getElementById('galeria-content').innerHTML = galeriaData;
+          document.getElementById('webradio-content').innerHTML = webradioData;
           document.getElementById('sobre-content').innerHTML = sobreData;
 
           initializeApp();
           initGallery();
 
           /* Ajustes pós-injeção: aplicar loading=lazy em imagens injetadas */
-          document.querySelectorAll('#inicio-content img, #catequese-content img, #galeria-content img, #sobre-content img')
+          document.querySelectorAll('#inicio-content img, #catequese-content img, #galeria-content img, #webradio-content img, #sobre-content img')
             .forEach(img => { if (!img.loading) img.loading = 'lazy'; });
 
           /* 🔊 RÁDIO AO VIVO (depois do footer existir) */
