@@ -102,6 +102,32 @@
   <script src="assets/js/theme-toggle.js"></script>
 
   <script>
+    let radioWidgetLoading = false;
+
+    function loadWebRadioPlayer() {
+      const player = document.querySelector('#webradio-content .cstrEmbed');
+      if (!player || player.dataset.rendered === 'true' || radioWidgetLoading) return;
+
+      /* O Caster só é carregado quando o visitante entra na página Web Rádio. */
+      if (typeof window.casterfmWidgetsRescan === 'function') {
+        window.casterfmWidgetsRescan();
+        return;
+      }
+
+      radioWidgetLoading = true;
+      const radioScript = document.createElement('script');
+      radioScript.src = 'https://cdn.cloud.caster.fm/widgets/embed.js';
+      radioScript.async = true;
+      radioScript.onload = () => {
+        radioWidgetLoading = false;
+      };
+      radioScript.onerror = () => {
+        radioWidgetLoading = false;
+        console.error('Não foi possível carregar o player da Web Rádio.');
+      };
+      document.body.appendChild(radioScript);
+    }
+
     function initializeApp() {
 
       /* =========================
@@ -122,6 +148,8 @@
             link.dataset.pageLink === page
           );
         });
+
+        if (page === 'webradio') loadWebRadioPlayer();
 
         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
           mobileMenu.classList.add('hidden');
@@ -219,12 +247,6 @@
           /* Ajustes pós-injeção: aplicar loading=lazy em imagens injetadas */
           document.querySelectorAll('#inicio-content img, #catequese-content img, #galeria-content img, #webradio-content img, #sobre-content img')
             .forEach(img => { if (!img.loading) img.loading = 'lazy'; });
-
-          /* 🔊 RÁDIO AO VIVO (depois do footer existir) */
-          const radioScript = document.createElement("script");
-          radioScript.src = "https://cdn.cloud.caster.fm/widgets/embed.js";
-          radioScript.async = true;
-          document.body.appendChild(radioScript);
 
           /* Script da Catequese (modal de encontros) */
           // const cateScript = document.createElement('script');
