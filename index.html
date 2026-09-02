@@ -193,13 +193,10 @@
           slides[currentSlide].classList.add('active');
           // updateOverlays(currentSlide); // Removido
 
-          // Tempo: 10s se estiver no slide 0 (foto1), senão 5s
-          const duration = currentSlide === 0 ? 10000 : 5000;
-          setTimeout(nextSlide, duration);
+          setTimeout(nextSlide, 5000);
         };
 
-        // Iniciar loop com duração inicial de 10s (já que começa no slide 0)
-        setTimeout(nextSlide, 10000);
+        setTimeout(nextSlide, 5000);
       }
     }
 
