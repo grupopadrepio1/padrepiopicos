@@ -213,10 +213,11 @@
           document.querySelectorAll('#inicio-content img, #catequese-content img, #galeria-content img, #sobre-content img')
             .forEach(img => { if (!img.loading) img.loading = 'lazy'; });
 
-          /* 🔊 PLAYER (depois do footer existir) */
-          const script = document.createElement("script");
-          script.src = "assets/js/music-player.js";
-          document.body.appendChild(script);
+          /* 🔊 RÁDIO AO VIVO (depois do footer existir) */
+          const radioScript = document.createElement("script");
+          radioScript.src = "https://cdn.cloud.caster.fm/widgets/embed.js";
+          radioScript.async = true;
+          document.body.appendChild(radioScript);
 
           /* Script da Catequese (modal de encontros) */
           // const cateScript = document.createElement('script');

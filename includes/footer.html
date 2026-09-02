@@ -23,55 +23,34 @@
       <p class="text-sm text-slate-300">grupopadrepio1@gmail.com</p>
     </div>
 
-    <!-- Coluna 3 – Player -->
+    <!-- Coluna 3 – Rádio ao vivo -->
     <div>
       <p class="text-sm uppercase tracking-[0.3em] text-slate-400">
-        Sons de Paz
+        Web Rádio
       </p>
 
       <div class="mt-4 px-4 py-3 rounded-md bg-slate-800 space-y-3">
-
-        <!-- Info -->
         <div class="overflow-hidden">
           <p class="text-[10px] uppercase tracking-wide text-slate-400">
-            Agora tocando
+            Ao vivo
           </p>
-          <p id="track-title" class="text-sm font-medium truncate">—</p>
-          <p id="track-artist" class="text-xs text-slate-400 truncate">—</p>
+          <p class="text-sm font-medium truncate">Transmissão ao vivo</p>
+          <p class="text-xs text-slate-400 truncate">Ouça a nossa programação</p>
         </div>
 
-        <!-- Barra de progresso minimalista -->
-        <input
-          id="progress-bar"
-          type="range"
-          min="0"
-          max="100"
-          value="0"
-          class="w-full h-1 accent-slate-400 cursor-pointer rounded-full transition-colors duration-200 hover:accent-slate-300">
-
-        <!-- Controles e volume -->
-        <div class="flex items-center justify-between gap-3 text-slate-300">
-
-          <div class="flex items-center gap-2 md:gap-3">
-            <button id="shuffle-btn" title="Aleatório" class="hover:text-slate-100 transition-colors">🔀</button>
-            <button id="prev-btn" title="Anterior" class="hover:text-slate-100 transition-colors">◀◀</button>
-            <button id="play-btn" class="text-2xl md:text-3xl hover:text-slate-100 transition-colors" title="Play / Pause">▶︎</button>
-            <button id="next-btn" title="Próxima" class="hover:text-slate-100 transition-colors">▶▶</button>
-          </div>
-
-          <!-- Volume -->
-          <input
-            id="volume-control"
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value="0.8"
-            class="w-24 md:w-32 h-1 accent-slate-400 cursor-pointer rounded-full transition-colors duration-200 hover:accent-slate-300">
+        <!-- O widget mantém o controle de reprodução da transmissão do Caster.fm. -->
+        <div
+          class="cstrEmbed cstr-radio-embed"
+          data-type="newStreamPlayer"
+          data-publicToken="5dcd3743-920d-4f85-b19a-6f5a15cca561"
+          data-theme="dark"
+          data-color="e81e4d"
+          data-channelId=""
+          data-rendered="false">
+          <a href="https://www.caster.fm">Shoutcast Hosting</a>
+          <a href="https://www.caster.fm">Stream Hosting</a>
+          <a href="https://www.caster.fm">Radio Server Hosting</a>
         </div>
-
-        <!-- Áudio -->
-        <audio id="audio-player" preload="metadata"></audio>
 
       </div>
     </div>

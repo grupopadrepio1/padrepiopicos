@@ -495,6 +495,19 @@ header img {
    Player Música Sacra
 ========================= */
 
+/* Widget da Web Rádio: o conteúdo e os controles são fornecidos pelo Caster.fm. */
+.cstr-radio-embed {
+  min-height: 5.5rem;
+}
+
+.cstr-radio-embed iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  border: 0;
+  border-radius: 0.375rem;
+}
+
 .music-player {
   width: 100%;
   background: color-mix(in srgb, var(--color-surface) 92%, var(--color-bg));
