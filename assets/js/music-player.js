@@ -1,6 +1,27 @@
 // assets/js/music-player.js
+const MUSIC_CATALOG_URL = "https://raw.githubusercontent.com/grupopadrepio1/music-missas/main/catalogo.json";
+
+async function loadPlaylist() {
+  const response = await fetch(MUSIC_CATALOG_URL);
+  if (!response.ok) throw new Error(`Catálogo indisponível (${response.status})`);
+
+  const catalog = await response.json();
+  if (!Array.isArray(catalog.missas) || !Array.isArray(catalog.movimentos) || !catalog.baseUrl) {
+    throw new Error("Catálogo inválido");
+  }
+
+  const baseUrl = catalog.baseUrl.replace(/\/$/, "");
+  const credits = "Cantores Carmeli Linz · dir. Michael Stenov · CC BY-SA 4.0";
+
+  return catalog.missas.flatMap((missa) => catalog.movimentos.map((movimento) => ({
+    title: `${missa.titulo} — ${movimento.titulo}`,
+    artist: `${missa.compositor} · ${credits}`,
+    src: `${baseUrl}/${missa.pasta}/${movimento.arquivo}`,
+  })));
+}
+
 // Tornar a inicializacao resiliente caso o footer ainda nao tenha sido injetado.
-function initMusicPlayer() {
+async function initMusicPlayer() {
   const audio = document.getElementById("audio-player");
   const playBtn = document.getElementById("play-btn");
   const prevBtn = document.getElementById("prev-btn");
@@ -13,38 +34,26 @@ function initMusicPlayer() {
 
   if (!audio || !playBtn || !prevBtn || !nextBtn || !titleEl || !artistEl) return false;
 
-  const playlist = [
-    {
-      title: "Beatus Populus - Coral Taizé",
-      artist: "Música Sacra",
-      src: "assets/audio/Beatus Populus - Coral Taizé.mp3"
-    },
-    {
-      title: "Miserere Domine - Coro e Cordas",
-      artist: "Música Sacra",
-      src: "assets/audio/Miserere Domine - Coro e Cordas.mp3"
-    },
-    {
-      title: "Miserere Domine - Coro e Cordas Final",
-      artist: "Música Sacra",
-      src: "assets/audio/Miserere Domine - Coro e Cordas Final.mp3"
-    },
-    {
-      title: "Miserere Domine - Taizé Style",
-      artist: "Música Sacra",
-      src: "assets/audio/Miserere Domine - Taizé Style.mp3"
-    },
-    {
-      title: "O Deus que Fala",
-      artist: "Música Sacra",
-      src: "assets/audio/O Deus que Fala.mp3"
-    },
-    {
-      title: "O Deus que Fala - Cathedral Version",
-      artist: "Música Sacra",
-      src: "assets/audio/O Deus que Fala - Cathedral Version.mp3"
-    }
-  ];
+  titleEl.textContent = "Carregando missas documentadas…";
+  artistEl.textContent = "Catálogo IMSLP / Stenov";
+
+  let playlist = [];
+  try {
+    playlist = await loadPlaylist();
+  } catch (error) {
+    console.warn("Não foi possível carregar o catálogo musical.", error);
+  }
+
+  if (!playlist.length) {
+    audio.removeAttribute("src");
+    audio.load();
+    titleEl.textContent = "Catálogo musical indisponível";
+    artistEl.textContent = "Tente novamente em instantes.";
+    [playBtn, prevBtn, nextBtn, shuffleBtn].forEach((button) => {
+      if (button) button.disabled = true;
+    });
+    return true;
+  }
 
   let currentTrack = Math.floor(Math.random() * playlist.length);
   let shuffle = false;
@@ -128,7 +137,12 @@ function initMusicPlayer() {
   return true;
 }
 
-if (!initMusicPlayer()) {
+function startMusicPlayer() {
+  if (document.getElementById("audio-player")) {
+    initMusicPlayer();
+    return;
+  }
+
   const mo = new MutationObserver((mutations, obs) => {
     if (document.getElementById("audio-player")) {
       initMusicPlayer();
@@ -137,3 +151,5 @@ if (!initMusicPlayer()) {
   });
   mo.observe(document.body, { childList: true, subtree: true });
 }
+
+startMusicPlayer();
