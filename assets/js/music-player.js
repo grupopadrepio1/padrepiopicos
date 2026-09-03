@@ -26,7 +26,6 @@ async function initMusicPlayer() {
   const playBtn = document.getElementById("play-btn");
   const prevBtn = document.getElementById("prev-btn");
   const nextBtn = document.getElementById("next-btn");
-  const shuffleBtn = document.getElementById("shuffle-btn");
   const titleEl = document.getElementById("track-title");
   const artistEl = document.getElementById("track-artist");
   const progressBar = document.getElementById("progress-bar");
@@ -49,7 +48,7 @@ async function initMusicPlayer() {
     audio.load();
     titleEl.textContent = "Catálogo musical indisponível";
     artistEl.textContent = "Tente novamente em instantes.";
-    [playBtn, prevBtn, nextBtn, shuffleBtn].forEach((button) => {
+    [playBtn, prevBtn, nextBtn].forEach((button) => {
       if (button) button.disabled = true;
     });
     return true;
@@ -71,15 +70,18 @@ async function initMusicPlayer() {
     audio.play()
       .then(() => {
         playBtn.textContent = "❚❚";
+        playBtn.setAttribute("aria-label", "Pausar");
       })
       .catch(() => {
         playBtn.textContent = "▶︎";
+        playBtn.setAttribute("aria-label", "Reproduzir");
       });
   }
 
   function pause() {
     audio.pause();
     playBtn.textContent = "▶︎";
+    playBtn.setAttribute("aria-label", "Reproduzir");
   }
 
   function togglePlay() {
@@ -104,13 +106,8 @@ async function initMusicPlayer() {
   audio.addEventListener("ended", nextTrack);
   audio.addEventListener("pause", () => {
     playBtn.textContent = "▶︎";
+    playBtn.setAttribute("aria-label", "Reproduzir");
   });
-
-  if (shuffleBtn) {
-    shuffleBtn.disabled = true;
-    shuffleBtn.title = "As missas seguem a ordem litúrgica";
-    shuffleBtn.style.opacity = "0.4";
-  }
 
   progressBar?.addEventListener("pointerdown", () => {
     isSeeking = true;
