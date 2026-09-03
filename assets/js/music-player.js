@@ -55,8 +55,7 @@ async function initMusicPlayer() {
     return true;
   }
 
-  let currentTrack = Math.floor(Math.random() * playlist.length);
-  let shuffle = false;
+  let currentTrack = 0;
   let isSeeking = false;
 
   function loadTrack(index) {
@@ -88,9 +87,7 @@ async function initMusicPlayer() {
   }
 
   function nextTrack() {
-    currentTrack = shuffle
-      ? Math.floor(Math.random() * playlist.length)
-      : (currentTrack + 1) % playlist.length;
+    currentTrack = (currentTrack + 1) % playlist.length;
     loadTrack(currentTrack);
     play();
   }
@@ -109,10 +106,11 @@ async function initMusicPlayer() {
     playBtn.textContent = "▶︎";
   });
 
-  shuffleBtn?.addEventListener("click", () => {
-    shuffle = !shuffle;
-    shuffleBtn.style.opacity = shuffle ? "1" : "0.4";
-  });
+  if (shuffleBtn) {
+    shuffleBtn.disabled = true;
+    shuffleBtn.title = "As missas seguem a ordem litúrgica";
+    shuffleBtn.style.opacity = "0.4";
+  }
 
   progressBar?.addEventListener("pointerdown", () => {
     isSeeking = true;
